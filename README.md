@@ -59,7 +59,6 @@ Your favorite animal is a lizard.
 
 # Known errors and things to mind
 
-Incorrect API key, nonexistent AI model or other impossible parameter will result in 404 error. Of course check your Internet connection, but if you get error 404 check if parameters are correct too.
+Incorrect API key, nonexistent AI model or other impossible parameter will result in 404 error.
 
 ImgChatGPTAgent may not remember the image for longer than one or two next questions.
-
