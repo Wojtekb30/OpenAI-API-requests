@@ -1,77 +1,98 @@
 # OpenAI-API-requests
-Python classes which allow using OpenAI API easily. Based fully on web requests.
 
-The classes are well documented within the code file. 
+Python classes that allow for easy interaction with the OpenAI API, based fully on web requests.
 
-Currently there are classes:
+The classes are well documented within the code file.
 
-ChatGPTAgent - allows you to create instance (object) of ChatGPT, saves conversation history and supports tweaking all parameters like model, system prompt, temperature etc. Use GetResponse to send a new message to the chatbot, ChangeSystemMessage to change system message without affecting conversation history, and use ClearHistory to reset message history.
+## Currently Available Classes
 
-ImgChatGPTAgent - same as ChatGPTAgent, but introduces additional method GetResponseWithImg, which allows you to send a message containing a image file. Please mind that as of now only ChatGPT 4o and 4o-mini support processing images.
+### ChatGPTAgent
+- Allows you to create an instance (object) of ChatGPT.
+- Saves conversation history and supports tweaking all parameters like model, system prompt, temperature, etc.
+- **Methods:**
+  - `GetResponse`: Send a new message to the chatbot.
+  - `ChangeSystemMessage`: Change the system message without affecting conversation history.
+  - `ClearHistory`: Reset message history.
 
-DallEAgent - Allows to generate an image with DALL-E AI image generator. Use GetImage to get the image as PIL Image variable, or use GetImageURL to get link to generated image.
+### ImgChatGPTAgent
+- Similar to `ChatGPTAgent`, but introduces an additional method:
+  - `GetResponseWithImg`: Send a message containing an image file.
+- **Note:** As of now, only ChatGPT 4o and 4o-mini support processing images.
 
-# Usage
+### DallEAgent
+- Allows you to generate an image with the DALL-E AI image generator.
+- **Methods:**
+  - `GetImage`: Get the image as a PIL Image variable.
+  - `GetImageURL`: Get a link to the generated image.
 
-You can download the package with PIP:
+## Usage
+
+You can download the package using PIP:
+
+```bash
 pip install EasyAPIOpenAI
+```
 
-Then, use (for example):
+Then, use it as follows:
 
+```python
 import easyapiopenai as oai
 
-agent = oai.ChatGPTAgent("api-key",'gpt-3.5-turbo')
+agent = oai.ChatGPTAgent("api-key", 'gpt-3.5-turbo')
+```
 
-Alternatively, without PIP or for MicroPython, use it in your Python download source code into same folder and write: 
+Alternatively, if you prefer not to use PIP or are working with MicroPython, download the source code into the same folder and write:
 
-from APIWojOpenAI import * 
+```python
+from APIWojOpenAI import *
+```
 
-Of course that depends on how you name the file.
+Make sure to adjust the filename as necessary.
 
-Then, use (for example):
+Then, you can use it like this:
 
-agent = ChatGPTAgent("api-key",'gpt-3.5-turbo')
+```python
+agent = ChatGPTAgent("api-key", 'gpt-3.5-turbo')
+```
 
-Class ChatGPTAgent should work well on embedded MicroPython systems, such as Raspberry Pi Pico. In that case remove other classes from the file and replace all import statements with import urequests as requests .
+The `ChatGPTAgent` class should work well on embedded MicroPython systems, such as Raspberry Pi Pico. In that case, remove other classes from the file and replace all import statements with:
 
-# Example code
+```python
+import urequests as requests
+```
 
-from APIWojOpenAI import * #assuming you have my code in the same directory saved to file APIWojOpenAI.py
+## Example Code
 
-API_KEY = 'KEY' #OpenAI API key, always remember about securing it propely.
+```python
+from APIWojOpenAI import *  # Assuming you have my code in the same directory saved to file APIWojOpenAI.py
+
+API_KEY = 'KEY'  # OpenAI API key; always remember to secure it properly.
 
 bot = ChatGPTAgent(API_KEY, model="gpt-3.5-turbo", max_tokens=1000, role="Your name is Bob")
 
-message = "Hello, who are you?" #Sample message
-
-answer = bot.GetResponse(message) #Get answer
-
+message = "Hello, who are you?"  # Sample message
+answer = bot.GetResponse(message)  # Get answer
 print(answer)
 
-message = "Remember that my favourite animal is a lizard." #Second sample message
-
-answer = bot.GetResponse(message) #Get next answer, continuing conversation
-
+message = "Remember that my favourite animal is a lizard."  # Second sample message
+answer = bot.GetResponse(message)  # Get next answer, continuing conversation
 print(answer)
 
-message = "What is my favourite animal?" #Third sample message, to prove it remembers
-
-answer = bot.GetResponse(message) #Get next answer, continuing conversation
-
+message = "What is my favourite animal?"  # Third sample message, to prove it remembers
+answer = bot.GetResponse(message)  # Get next answer, continuing conversation
 print(answer)
+```
 
-[Output]:
-
+**Output:**
+```
 Hi there! My name is Bob. How can I assist you today?
-
 Got it! Your favorite animal is a lizard. Would you like to talk about lizards or anything else related to them?
-
 Your favorite animal is a lizard.
+```
 
-# Known errors and things to mind
+## Known Errors and Things to Keep in Mind
 
-Incorrect API key, nonexistent AI model or other impossible parameter will result in 404 error.
-
-ImgChatGPTAgent may not remember the image for longer than one or two next questions.
-
-If chat history is longer than 100 messages, the AI might stop working. It depends on the AI model, for sure. I noticed that for GPT-3.5-turbo.
+- An incorrect API key, nonexistent AI model, or other impossible parameters will result in a 404 error.
+- `ImgChatGPTAgent` may not remember the image for longer than one or two subsequent questions.
+- If chat history exceeds 100 messages, the AI might stop working. This behavior depends on the AI model; it has been observed with GPT-3.5-turbo.
+```
