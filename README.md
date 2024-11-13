@@ -13,15 +13,26 @@ DallEAgent - Allows to generate an image with DALL-E AI image generator. Use Get
 
 # Usage
 
-To use it in your Python project, download my code into same folder and write: 
+You can download the package with PIP:
+pip install EasyAPIOpenAI
+
+Then, use (for example):
+
+import easyapiopenai as oai
+
+agent = oai.ChatGPTAgent("api-key",'gpt-3.5-turbo')
+
+Alternatively, without PIP or for MicroPython, use it in your Python download source code into same folder and write: 
 
 from APIWojOpenAI import * 
 
 Of course that depends on how you name the file.
 
-Class ChatGPTAgent should work well on embedded MicroPython systems, such as Raspberry Pi Pico. In that case remove other classes from the file and replace all import statements with import urequests as requests .
+Then, use (for example):
 
-I may make it a pip package someday.
+agent = ChatGPTAgent("api-key",'gpt-3.5-turbo')
+
+Class ChatGPTAgent should work well on embedded MicroPython systems, such as Raspberry Pi Pico. In that case remove other classes from the file and replace all import statements with import urequests as requests .
 
 # Example code
 
