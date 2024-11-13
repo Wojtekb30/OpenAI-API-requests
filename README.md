@@ -64,11 +64,11 @@ import urequests as requests
 ## Example Code
 
 ```python
-from APIWojOpenAI import *  # Assuming you have my code in the same directory saved to file APIWojOpenAI.py
+import easyapiopenai as oai
 
 API_KEY = 'KEY'  # OpenAI API key; always remember to secure it properly.
 
-bot = ChatGPTAgent(API_KEY, model="gpt-3.5-turbo", max_tokens=1000, role="Your name is Bob")
+bot = oai.ChatGPTAgent(API_KEY, model="gpt-3.5-turbo", max_tokens=1000, role="Your name is Bob")
 
 message = "Hello, who are you?"  # Sample message
 answer = bot.GetResponse(message)  # Get answer
