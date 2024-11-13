@@ -95,4 +95,3 @@ Your favorite animal is a lizard.
 - An incorrect API key, nonexistent AI model, or other impossible parameters will result in a 404 error.
 - `ImgChatGPTAgent` may not remember the image for longer than one or two subsequent questions.
 - If chat history exceeds 100 messages, the AI might stop working. This behavior depends on the AI model; it has been observed with GPT-3.5-turbo.
-```
